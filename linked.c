@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 struct song_node{ 
   char name[100];
   char artist[100];
@@ -21,29 +22,42 @@ struct song_node *insert_front(struct song_node *current, char *artist, char *na
     struct song_node * to_add = malloc(sizeof(struct song_node));
     strcpy(to_add->artist, artist);
     strcpy(to_add->name, name);
-    to_add -> next = current;
+    to_add->next = current;
     return to_add;
 }
 
 void insert_order(struct song_node *head, char *artist, char *name){
-    struct song_node * to_add = malloc(sizeof(struct song_node));
-    to_add -> name = name;
-    to_add -> artist = artist;
-    
+    // struct song_node * to_add = malloc(sizeof(struct song_node));
+    // strcpy(to_add->artist, artist);
+    // strcpy(to_add->name, name);
+    struct song_node *prev;
+
     while(strcmp(artist, head->artist) <= 0){
-      
+        prev = head;
+        printf("%u", prev);
+        head = head->next;
+        printf("%u", head);
 
     }
+
+    // while(strcmp(name, head->name) <= 0){
+    //     prev = head;
+    //     head = head->next;
+    // }
+
+    prev->next = insert_front(head, artist, name);
+
 }
 
 int main(){
 
     struct song_node *head = malloc(sizeof(struct song_node));
-    strcpy(head->artist, "Haydn");
-    strcpy(head->name, "Trumpet Concerto");
-    head = insert_front(head, "Beethoven", "Moonlight Sonata");
+    strcpy(head->artist, "haydn");
+    strcpy(head->name, "trumpet concerto");
+    head = insert_front(head, "beethoven", "moonlight sonata");
+    insert_order(head, "d", "dwd");
     
-    print_list(head);
+    // print_list(head);
 
 
     return 0;
