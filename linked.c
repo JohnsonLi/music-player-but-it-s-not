@@ -124,7 +124,15 @@ struct song_node *remove_song(struct song_node *head, char *artist, char *name){
     return NULL;
 }
 
-
+struct song_node *free_list(struct song_node *head){
+    struct song_node *first = head;
+    struct song_node *temp;
+    while(head){
+        temp=head->next;
+        free(head);
+    }
+    return first;
+}
 int main(){
 
     struct song_node *head = malloc(sizeof(struct song_node));
