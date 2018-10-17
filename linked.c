@@ -101,6 +101,12 @@ struct song_node * find_artist(struct song_node *head, char *artist, char *name)
 	return NULL;
 }
 
+struct song_node * choose_random(struct song_node *head);
+
+struct song_node * remove(struct song_node *head, char *artist, char *name);
+
+struct song_node * free(struct song_node *head);
+
 int main(){
 
     struct song_node *head = malloc(sizeof(struct song_node));
