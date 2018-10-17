@@ -107,7 +107,21 @@ struct song_node * find_artist(struct song_node *head, char *artist){
 }
 
 struct song_node *random_node(){
+    srand(time(NULL));
+}
 
+struct song_node *remove_song(struct song_node *head, char *artist, char *name){
+    struct song_node *front = head;
+    if(strcmp(head->artist,artist)==0 && strcmp(head->name,name)==0){
+        return head->next;
+    }
+    while(head->next){
+        if (strcmp(head->artist,artist)==0 && strcmp(head->name,name)==0){
+            head->next=head->next->next;
+            return front;
+        }
+    }
+    return NULL;
 }
 
 
@@ -119,8 +133,10 @@ int main(){
     head =insert_order(head, "beethoven", "moonlight sonata");
     head =insert_order(head, "z", "dwd");
     head =insert_order(head, "z", "a");
-    
-    print_list(find_artist(head, "z"));
+    head = insert_order(head, "a", "a");
+    print_list(head);
+    head =remove_song(head,"beethoven","moonlight sonata");
+    print_list(head);
 
     // print_list(head);
 
