@@ -30,6 +30,16 @@ void insert_order(struct song_node *head, char *artist, char *name){
 	struct song_node *to_add=malloc(sizeof(struct song_node));
 	strcpy(to_add->artist, artist);
     strcpy(to_add->name, name);
+    if (!head->next){
+    	if(strcmp(artist,head->artist)<0||(strcmp(artist,head->artist)==0&&strcmp(name,head->name)<0)){
+    		insert_front(head,artist,name);
+    		return;
+    	}
+    	else{
+    		head->next=to_add;
+    		return ;
+    	}
+    }
 	while(head->next){
 		if (strcmp(artist,head->next->artist)<0){
 			to_add->next=head->next;
@@ -78,9 +88,9 @@ int main(){
     struct song_node *head = malloc(sizeof(struct song_node));
     strcpy(head->artist, "haydn");
     strcpy(head->name, "trumpet concerto");
-    head = insert_front(head, "beethoven", "moonlight sonata");
-    insert_order(head, "d", "dwd");
-    insert_order(head, "d", "a");
+    insert_order(head, "zeethoven", "moonlight sonata");
+    insert_order(head, "z", "dwd");
+    insert_order(head, "z", "a");
     
     print_list(head);
 
