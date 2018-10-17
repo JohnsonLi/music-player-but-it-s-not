@@ -27,25 +27,49 @@ struct song_node *insert_front(struct song_node *current, char *artist, char *na
 }
 
 void insert_order(struct song_node *head, char *artist, char *name){
+	struct song_node *to_add=malloc(sizeof(struct song_node));
+	strcpy(to_add->artist, artist);
+    strcpy(to_add->name, name);
+	while(head->next){
+		if (strcmp(artist,head->next->artist)<0){
+			to_add->next=head->next;
+			head->next=to_add;
+			return ;
+		}
+		if(strcmp(artist,head->next->artist)==0){
+			if(strcmp(name,head->next->name)<0){
+				to_add->next=head->next;
+				head->next=to_add;
+				return;
+			}
+			else{
+				to_add->next=head->next;
+				head->next=to_add->next;
+				return;
+			}
+		}
+		head->next;
+	}
+	return;
     // struct song_node * to_add = malloc(sizeof(struct song_node));
     // strcpy(to_add->artist, artist);
     // strcpy(to_add->name, name);
-    struct song_node *prev;
+    //struct song_node *prev;
 
-    while(strcmp(artist, head->artist) <= 0){
-        prev = head;
-        printf("%u", prev);
-        head = head->next;
-        printf("%u", head);
+    //while(strcmp(artist, head->artist) <= 0){
+    //    prev = head;
+    //    printf("%u", prev);
+    //    head = head->next;
+    //    printf("%u", head);
 
-    }
+    //}
 
     // while(strcmp(name, head->name) <= 0){
     //     prev = head;
     //     head = head->next;
     // }
 
-    prev->next = insert_front(head, artist, name);
+    //prev->next = insert_front(head, artist, name);
 
 }
 
@@ -56,8 +80,9 @@ int main(){
     strcpy(head->name, "trumpet concerto");
     head = insert_front(head, "beethoven", "moonlight sonata");
     insert_order(head, "d", "dwd");
+    insert_order(head, "d", "a");
     
-    // print_list(head);
+    print_list(head);
 
 
     return 0;
