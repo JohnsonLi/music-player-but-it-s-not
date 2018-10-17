@@ -92,7 +92,7 @@ struct song_node * find_node(struct song_node *head, char *artist, char *name){
 			return head;
 		}
         head=head->next;
-	}ct.c
+	}
 	return NULL;
 }
 
@@ -104,6 +104,10 @@ struct song_node * find_artist(struct song_node *head, char *artist){
         head=head->next;
 	}
 	return NULL;
+}
+
+struct song_node *random_node(){
+
 }
 
 
