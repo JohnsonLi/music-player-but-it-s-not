@@ -83,6 +83,15 @@ void insert_order(struct song_node *head, char *artist, char *name){
 
 }
 
+struct song_node * find_node(struct song_node *head, char *artist, char *name){
+	while(head){
+		if (strcmp(head->artist,artist)==0&&strcmp(head->name,name)==0){
+			return head;
+		}
+	}
+	return NULL;
+}
+
 int main(){
 
     struct song_node *head = malloc(sizeof(struct song_node));
