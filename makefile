@@ -1,8 +1,8 @@
-run: linked.o
+cake: linked.o
 	gcc linked.o 
 
 linked.o: linked.c
 	gcc -c linked.c
 
-cake:
+run:
 	./a.out
