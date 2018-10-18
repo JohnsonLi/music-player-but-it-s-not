@@ -9,6 +9,10 @@ void print_list(struct song_node *head){
     return;
 }
 
+void print_node(struct song_node *node){
+    printf("%s: %s\n", node->artist, node->name);
+}
+
 struct song_node *insert_front(struct song_node *current, char *artist, char *name){
     struct song_node * to_add = malloc(sizeof(struct song_node));
     strcpy(to_add->artist, artist);
@@ -122,27 +126,27 @@ struct song_node *random_element(struct song_node *head){
     return current;
 }
 
-int main(){
+// int main(){
 
-    struct song_node *head = malloc(sizeof(struct song_node));
-    strcpy(head->artist, "haydn");
-    strcpy(head->name, "trumpet concerto");
-    head =insert_order(head, "beethoven", "moonlight sonata");
-    head =insert_order(head, "z", "dwd");
-    head =insert_order(head, "z", "a");
-    head = insert_order(head, "a", "a");
-    // print_list(head);
-    // printf("%d\n", list_length(head));
-    // head =remove_song(head,"beethoven","moonlight sonata");
-    print_list(head);
-    head = free_list(head);
-    print_list(head);
-    // printf("%d\n", list_length(head));
-    // struct song_node *random = random_element(head);
-    // printf("Random element- Artist: %s, Song: %s\n", random->artist, random->name);
+//     struct song_node *head = malloc(sizeof(struct song_node));
+//     strcpy(head->artist, "haydn");
+//     strcpy(head->name, "trumpet concerto");
+//     head =insert_order(head, "beethoven", "moonlight sonata");
+//     head =insert_order(head, "z", "dwd");
+//     head =insert_order(head, "z", "a");
+//     head = insert_order(head, "a", "a");
+//     print_list(head);
+//     printf("%d\n", list_length(head));
+//     head =remove_song(head,"beethoven","moonlight sonata");
+//     print_list(head);
+//     head = free_list(head);
+//     print_list(head);
+//     printf("%d\n", list_length(head));
+//     struct song_node *random = random_element(head);
+//     printf("Random element- Artist: %s, Song: %s\n", random->artist, random->name);
 
-    // print_list(head);
+//     print_list(head);
 
 
-    return 0;
-}
+//     return 0;
+// }
