@@ -72,7 +72,7 @@ void remove_song(char *artist, char *name){
     int index = artist[0] % 97;
 
     if(search(artist, name)){
-        remove_node(library[index], artist, name);
+        library[index]=remove_node(library[index], artist, name);
     }
 
 }
@@ -101,7 +101,7 @@ int main(){
     strcpy(aa->name, "trumpet contorto");
 
     struct song_node *b = malloc(sizeof(struct song_node));
-    strcpy(b->artist, "!eethoven");
+    strcpy(b->artist, "eeethoven");
     strcpy(b->name, "roomba sonata");
 
     struct song_node *c = malloc(sizeof(struct song_node));
@@ -118,8 +118,8 @@ int main(){
     print_library();
 
     //print_node(search("yeethoven", "roomba sonata"));
-    //remove_song("yeethoven","roomba sonata");
-    //print_library();
+    remove_song("eeethoven","roomba sonata");
+    print_library();
 
     // print_letter('h');
     
