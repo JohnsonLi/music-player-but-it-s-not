@@ -17,5 +17,6 @@ struct song_node *remove_song(struct song_node *head, char *artist, char *name);
 struct  song_node *remove_song(struct song_node *head, char *artist, char *name);
 struct  song_node *free_list(struct song_node *head);
 struct song_node *random_element(struct song_node *head);
-void    print_list(struct song_node *head);
+void print_list(struct song_node *head);
+void print_node(struct song_node *node);
 int list_length(struct song_node *head);
