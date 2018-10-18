@@ -90,13 +90,15 @@ struct song_node *remove_song(struct song_node *head, char *artist, char *name){
 }
 
 struct song_node *free_list(struct song_node *head){
-    struct song_node *first = head;
-    struct song_node *temp;
-    while(head){
-        temp=head->next;
-        free(head);
+    struct song_node *current = head;
+    struct song_node *temp = head;
+
+    while(current){
+        temp = current->next;
+        free(current);
+        current = temp;
     }
-    return first;
+    return current;
 }
 
 int list_length(struct song_node *head){
@@ -132,10 +134,12 @@ int main(){
     // print_list(head);
     // printf("%d\n", list_length(head));
     // head =remove_song(head,"beethoven","moonlight sonata");
-    // print_list(head);
+    print_list(head);
+    head = free_list(head);
+    print_list(head);
     // printf("%d\n", list_length(head));
-    struct song_node *random = random_element(head);
-    printf("Random element- Artist: %s, Song: %s\n", random->artist, random->name);
+    // struct song_node *random = random_element(head);
+    // printf("Random element- Artist: %s, Song: %s\n", random->artist, random->name);
 
     // print_list(head);
 
