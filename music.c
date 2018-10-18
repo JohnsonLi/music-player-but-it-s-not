@@ -8,6 +8,7 @@ void print_library(){
         if(library[i]){
             printf("%c list:\n\t", library[i]->artist[0]);
             print_list(library[i]);
+            printf("\n");
         }
     }
 }
@@ -47,7 +48,7 @@ struct song_node *search(char *artist, char *name){
 struct song_node *search_artist(char *artist){
     int index = artist[0] % 97;
     
-    // printf("looking for [%s]\n", artist);
+    //printf("looking for [%s]\n", artist);
 
     if(library[index]){
         struct song_node *found = find_artist(library[index], artist);
@@ -62,23 +63,27 @@ struct song_node *search_artist(char *artist){
 void remove_song(char *artist, char *name){
     int index = artist[0] % 97;
 
-    if(search(index, artist, name)){
+    if(search(artist, name)){
         remove_node(library[index], artist, name);
     }
 
 }
 
 void shuffle(int number_songs){
-
     int i;
+    int r;
     for(i = 0; i < number_songs; i++){
-        print_node(random_element())
+        while(r){
+            r=rand()%27;
+        }
+        print_node(random_element(library[r]));
+        r=0;
     }
 
 }
 
 int main(){
-
+    srand(time(NULL));
     struct song_node *a = malloc(sizeof(struct song_node));
     strcpy(a->artist, "haydn");
     strcpy(a->name, "trumpet concerto");
@@ -104,8 +109,9 @@ int main(){
 
     print_library();
 
-    search("yeethoven", "roomba sonata");
-
+    print_node(search("yeethoven", "roomba sonata"));
+    remove_song("yeethoven","roomba sonata");
+    print_library();
 
     // print_letter('h');
     

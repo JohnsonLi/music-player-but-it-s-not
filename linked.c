@@ -115,9 +115,7 @@ int list_length(struct song_node *head){
 }
 
 struct song_node *random_element(struct song_node *head){
-    srand(time(NULL));
     int random = rand() % list_length(head);
-    
     struct song_node *current = head;
     int i;
     for(i = 0; i < random; i++){
