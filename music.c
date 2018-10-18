@@ -6,7 +6,12 @@ void print_library(){
     int i;
     for(i = 0; i < 27; i++){
         if(library[i]){
-            printf("%c list:\n\t", library[i]->artist[0]);
+            if (i==26){
+                printf("special characters list:\n");
+            }
+            else{
+                printf("%c list:\n\t", library[i]->artist[0]);
+            }
             print_list(library[i]);
             printf("\n");
         }
@@ -15,7 +20,10 @@ void print_library(){
 
 void add_song(struct song_node *to_add){
     // 97 is ascii value of 'a'
-    int index = to_add->artist[0] % 97;
+    int index = to_add->artist[0]-97;
+    if (index>25 || index<0){
+        index = 26;
+    }
     if(library[index]){
         insert_order(library[index], to_add->artist, to_add->name);
     } else {
@@ -93,7 +101,7 @@ int main(){
     strcpy(aa->name, "trumpet contorto");
 
     struct song_node *b = malloc(sizeof(struct song_node));
-    strcpy(b->artist, "yeethoven");
+    strcpy(b->artist, "!eethoven");
     strcpy(b->name, "roomba sonata");
 
     struct song_node *c = malloc(sizeof(struct song_node));
@@ -109,9 +117,9 @@ int main(){
 
     print_library();
 
-    print_node(search("yeethoven", "roomba sonata"));
-    remove_song("yeethoven","roomba sonata");
-    print_library();
+    //print_node(search("yeethoven", "roomba sonata"));
+    //remove_song("yeethoven","roomba sonata");
+    //print_library();
 
     // print_letter('h');
     
