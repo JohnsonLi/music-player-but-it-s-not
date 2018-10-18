@@ -79,7 +79,7 @@ struct song_node * find_artist(struct song_node *head, char *artist){
 	return NULL;
 }
 
-struct song_node *remove_song(struct song_node *head, char *artist, char *name){
+struct song_node *remove_node(struct song_node *head, char *artist, char *name){
     struct song_node *front = head;
     if(strcmp(head->artist,artist) == 0 && strcmp(head->name,name) == 0){
         return head->next;

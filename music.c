@@ -31,27 +31,50 @@ void print_letter(char letter){
 struct song_node *search(char *artist, char *name){
     int index = artist[0] % 97;
     
-    printf("looking for [%s: %s]\n", artist, name);
+    // printf("looking for [%s: %s]\n", artist, name);
 
     if(library[index]){
-        struct song_node *head = library[index];
-        struct song_node *found = find_node(head,artist,name);
+        struct song_node *found = find_node(library[index],artist,name);
         if(found){
-            printf("song found! %s: %s\n", found->artist, found->name);
+            // printf("song found! %s: %s\n", found->artist, found->name);
             return found;
         }
-        /*
-        while(head){
-            if(head->artist == artist && head->name == name){
-                printf("song found! %s %s", head->artist, head->name);
-                return head;
-            }
-            head = head->next;
-        }
-        */
     }
-    printf("song not found\n");
+    // printf("song not found\n");
     return NULL;
+}
+
+struct song_node *search_artist(char *artist){
+    int index = artist[0] % 97;
+    
+    // printf("looking for [%s]\n", artist);
+
+    if(library[index]){
+        struct song_node *found = find_artist(library[index], artist);
+        if(found){
+            // printf("artist found!");
+            return found;
+        }
+    }
+    return NULL;
+}
+
+void remove_song(char *artist, char *name){
+    int index = artist[0] % 97;
+
+    if(search(index, artist, name)){
+        remove_node(library[index], artist, name);
+    }
+
+}
+
+void shuffle(int number_songs){
+
+    int i;
+    for(i = 0; i < number_songs; i++){
+        print_node(random_element())
+    }
+
 }
 
 int main(){
