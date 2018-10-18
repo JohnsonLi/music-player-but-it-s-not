@@ -133,6 +133,28 @@ struct song_node *free_list(struct song_node *head){
     }
     return first;
 }
+
+int list_length(struct song_node *head){
+    int counter = 1;
+    while(head->next){
+        counter += 1;
+        head = head->next;
+    }
+    return counter;
+}
+
+struct song_node *random_element(struct song_node *head){
+    srand(time(NULL));
+    int random = rand() % list_length(head);
+    
+    struct song_node *current = head;
+    int i;
+    for(i = 0; i < random; i++){
+        current = current->next;
+    }
+    return current;
+}
+
 int main(){
 
     struct song_node *head = malloc(sizeof(struct song_node));
@@ -142,9 +164,13 @@ int main(){
     head =insert_order(head, "z", "dwd");
     head =insert_order(head, "z", "a");
     head = insert_order(head, "a", "a");
-    print_list(head);
-    head =remove_song(head,"beethoven","moonlight sonata");
-    print_list(head);
+    // print_list(head);
+    // printf("%d\n", list_length(head));
+    // head =remove_song(head,"beethoven","moonlight sonata");
+    // print_list(head);
+    // printf("%d\n", list_length(head));
+    struct song_node *random = random_element(head);
+    printf("Random element- Artist: %s, Song: %s\n", random->artist, random->name);
 
     // print_list(head);
 
