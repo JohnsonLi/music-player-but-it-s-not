@@ -1,15 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
-
-
-
-struct song_node{ 
-  char name[100];
-  char artist[100];
-  struct song_node *next;
-};
+#include "linked.h"
 
 void print_list(struct song_node *head){
     while(head){
@@ -64,60 +53,36 @@ struct song_node *insert_order(struct song_node *head, char *artist, char *name)
 	}
     front->next=to_add;
 	return head;
-    // struct song_node * to_add = malloc(sizeof(struct song_node));
-    // strcpy(to_add->artist, artist);
-    // strcpy(to_add->name, name);
-    //struct song_node *prev;
-
-    //while(strcmp(artist, head->artist) <= 0){
-    //    prev = head;
-    //    printf("%u", prev);
-    //    head = head->next;
-    //    printf("%u", head);
-
-    //}
-
-    // while(strcmp(name, head->name) <= 0){
-    //     prev = head;
-    //     head = head->next;
-    // }
-
-    //prev->next = insert_front(head, artist, name);
-    // boken
 }
 
 struct song_node * find_node(struct song_node *head, char *artist, char *name){
 	while(head){
-		if (strcmp(head->artist,artist)==0&&strcmp(head->name,name)==0){
+		if (strcmp(head->artist,artist) == 0 && strcmp(head->name,name) == 0){
 			return head;
 		}
-        head=head->next;
+        head = head->next;
 	}
 	return NULL;
 }
 
 struct song_node * find_artist(struct song_node *head, char *artist){
 	while(head){
-		if (strcmp(head->artist,artist)==0){
+		if (strcmp(head->artist, artist) == 0){
 			return head;
 		}
-        head=head->next;
+        head = head->next;
 	}
 	return NULL;
 }
 
-struct song_node *random_node(){
-    srand(time(NULL));
-}
-
 struct song_node *remove_song(struct song_node *head, char *artist, char *name){
     struct song_node *front = head;
-    if(strcmp(head->artist,artist)==0 && strcmp(head->name,name)==0){
+    if(strcmp(head->artist,artist) == 0 && strcmp(head->name,name) == 0){
         return head->next;
     }
     while(head->next){
-        if (strcmp(head->artist,artist)==0 && strcmp(head->name,name)==0){
-            head->next=head->next->next;
+        if (strcmp(head->artist,artist) == 0 && strcmp(head->name,name) == 0){
+            head->next = head->next->next;
             return front;
         }
     }
