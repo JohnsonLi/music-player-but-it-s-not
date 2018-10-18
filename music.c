@@ -35,6 +35,12 @@ struct song_node *search(char *artist, char *name){
 
     if(library[index]){
         struct song_node *head = library[index];
+        struct song_node *found = find_node(head,artist,name);
+        if(found){
+            printf("song found! %s: %s\n", found->artist, found->name);
+            return found;
+        }
+        /*
         while(head){
             if(head->artist == artist && head->name == name){
                 printf("song found! %s %s", head->artist, head->name);
@@ -42,6 +48,7 @@ struct song_node *search(char *artist, char *name){
             }
             head = head->next;
         }
+        */
     }
     printf("song not found\n");
     return NULL;
