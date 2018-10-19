@@ -43,15 +43,16 @@ void print_letter(struct song_node * library[], char letter){
 struct song_node *search_artist(struct song_node * library[], char *artist){
     int index = artist[0] % 97;
     
-    //printf("looking for [%s]\n", artist);
+    printf("looking for [%s]\n", artist);
 
     if(library[index]){
         struct song_node *found = find_artist(library[index], artist);
         if(found){
-            // printf("artist found!");
+            printf("artist found! %s", found->artist);
             return found;
         }
     }
+    printf("artist not found");
     return NULL;
 }
 
@@ -70,16 +71,16 @@ void print_artist(struct song_node * library[], char *artist){
 struct song_node *search(struct song_node * library[], char *artist, char *name){
     int index = artist[0] % 97;
     
-    // printf("looking for [%s: %s]\n", artist, name);
+    printf("looking for [%s: %s]\n", artist, name);
 
     if(library[index]){
         struct song_node *found = find_node(library[index], artist, name);
         if(found){
-            // printf("song found! %s: %s\n", found->artist, found->name);
+            printf("song found! %s: %s\n", found->artist, found->name);
             return found;
         }
     }
-    // printf("song not found\n");
+    printf("song not found\n");
     return NULL;
 }
 

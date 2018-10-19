@@ -95,19 +95,69 @@ int main(){
     printf("====================================\n");
 
     struct song_node *library[27];
-    // free_library(library);
 
     printf("current library(empty):\n");
     print_library(library);
 
-    // struct song_node *library[27];
-    // printf("TESTING ADD:\n");
-    // printf("adding [beethoven: moonlight sonata]\n");
-    // add_song(library, "beethoven", "moonlight sonata");
-    // printf("current library:\n");
-    // print_library(library);
-  
+    printf("TESTING ADD:\n");
+    printf("adding [beethoven: moonlight sonata]\n");
+    add_song(library, "beethoven", "moonlight sonata");
+    printf("current library:\n");
+    print_library(library);
 
+    printf("adding [yeethoven: moonlight sonata]\n");
+    add_song(library, "yeethoven", "moonlight sonata");
+    printf("adding [mozart: requiem]\n");
+    add_song(library, "mozart", "requiem");
+    printf("adding [haydn: trumpet concerto]\n");
+    add_song(library, "haydn", "trumpet concerto");
 
+    printf("TESTING SEARCH:\n");
+    search(library, "mozart", "requiem");
+    printf("\n");
+    search(library, "mozaaaaart", "requiem");
+    printf("\n");
+
+    printf("TESTING SEARCH ARTIST:\n");
+    search_artist(library, "beethoven");
+    printf("\n");
+    search_artist(library, "beeeeeethoven");
+    printf("\n");
+
+    printf("TESTING PRINT LETTER:\n");
+    printf("printing b:\n");
+    print_letter(library, 'b');
+    printf("printing z: (not in library)\n");
+    print_letter(library, 'z');
+    printf("\n");
+
+    printf("TESTING PRINT ARTIST:\n");
+    printf("printing mozart:\n");
+    print_artist(library, "mozart");
+    printf("\n");
+    printf("printing bach: (not in library)\n");
+    printf("\n");
+
+    printf("TESTING SHUFFLE:\n");
+    printf("shuffling, giving 3 songs:\n");
+    shuffle(library, 3);
+    printf("shuffling, giving 4 songs:\n");
+    shuffle(library, 4);
+
+    printf("TESTING DELETE:\n");
+    printf("current library:\n");
+    print_library(library);
+    printf("\n");
+    printf("removing beethoven: moonlight sonata:\n");
+    remove_song(library, "beethoven", "moonlight sonata");
+    printf("\n");
+    printf("library now:\n");
+    print_library(library);
+
+    printf("TESTING CLEARING:\n");
+    prtinf("clearing library...\n");
+    free_library(library);
+    printf("library now:\n");
+    print_library(library);
 }
 
