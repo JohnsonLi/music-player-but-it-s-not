@@ -40,13 +40,25 @@ void print_letter(char letter){
     print_list(library[index]);
 }
 
+void print_artist(char *artist){
+    struct song_node *location = search_artist(artist);
+    printf("%s list:\n", artist);
+    while(location){
+        if(strcmp(location->artist, artist) == 0){
+            printf("\t");
+            print_node(location);
+        }
+        location = location->next;
+    }
+}
+
 struct song_node *search(char *artist, char *name){
     int index = artist[0] % 97;
     
     // printf("looking for [%s: %s]\n", artist, name);
 
     if(library[index]){
-        struct song_node *found = find_node(library[index],artist,name);
+        struct song_node *found = find_node(library[index], artist, name);
         if(found){
             // printf("song found! %s: %s\n", found->artist, found->name);
             return found;
@@ -83,16 +95,21 @@ void remove_song(char *artist, char *name){
 void shuffle(int number_songs){
     
     int i;
-    printf("%d\n", rand()%27);
-    int r=-1;
     for(i = 0; i < number_songs; i++){
-        while(r>=0 && library[r]){
-            r=rand()%27;
+        int number = rand() % 27;
+        while(!library[number]){
+            number = rand() % 27;
         }
-        print_node(random_element(library[r]));
-        r=-1;
+        print_node(library[number]);
     }
 
+}
+
+void free_library(){
+    int i;
+    for(i = 0; i < 27; i++){
+        library[i] = free_list(library[i]);
+    }
 }
 
 int main(){
@@ -101,14 +118,26 @@ int main(){
     add_song("haydn","trumpet concerto");
     add_song("bydn","trumpet contorto");
     add_song("beethoven","roomba sonata");
+    add_song("beethoven","roomba sonata1");
+    add_song("beethoven","roomba sonefwefata2");
     add_song("yeethoven","trumpet concerto");
+    add_song("&yeethoven","trumpet concerto");
+    
     print_library();
 
+    printf("freeing\n");
+    free_library();
+
+    print_library();
+
+    // print_list(search_artist("beethoven"));
     //print_node(search("yeethoven", "roomba sonata"));
     //remove_song("beethoven","roomba sonata");
-    print_library();
+    // print_library();
 
-    shuffle(3);
+    // shuffle(5);
+
+    // print_artist("beethoven");
     
 
 
