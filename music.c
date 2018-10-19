@@ -1,4 +1,5 @@
-#include "linked.h"
+#include "music.h"
+#include "linked.c"
 
 struct song_node * library[27];
 
@@ -18,14 +19,17 @@ void print_library(){
     }
 }
 
-void add_song(struct song_node *to_add){
+void add_song(char *artist, char *name){
+    struct song_node *to_add = malloc(sizeof(struct song_node));
+    strcpy(to_add->artist,artist);
+    strcpy(to_add->name,name);
     // 97 is ascii value of 'a'
     int index = to_add->artist[0]-97;
     if (index>25 || index<0){
         index = 26;
     }
     if(library[index]){
-        insert_order(library[index], to_add->artist, to_add->name);
+        library[index] = insert_order(library[index], to_add->artist, to_add->name);
     } else {
         library[index] = to_add;
     }
@@ -92,6 +96,7 @@ void shuffle(int number_songs){
 
 int main(){
     srand(time(NULL));
+    /*
     struct song_node *a = malloc(sizeof(struct song_node));
     strcpy(a->artist, "haydn");
     strcpy(a->name, "trumpet concerto");
@@ -101,24 +106,25 @@ int main(){
     strcpy(aa->name, "trumpet contorto");
 
     struct song_node *b = malloc(sizeof(struct song_node));
-    strcpy(b->artist, "eeethoven");
+    strcpy(b->artist, "beethoven");
     strcpy(b->name, "roomba sonata");
 
     struct song_node *c = malloc(sizeof(struct song_node));
     strcpy(c->artist, "yeethoven");
     strcpy(c->name, "trumpet concerto");
+    */
 
     // print_library();
 
-    add_song(a);
-    add_song(aa);
-    add_song(b);
-    add_song(c);
+    add_song("haydn","trumpet concerto");
+    add_song("bydn","trumpet contorto");
+    add_song("beethoven","roomba sonata");
+    add_song("yeethoven","trumpet concerto");
 
     print_library();
 
     //print_node(search("yeethoven", "roomba sonata"));
-    remove_song("eeethoven","roomba sonata");
+    remove_song("beethoven","roomba sonata");
     print_library();
 
     // print_letter('h');
