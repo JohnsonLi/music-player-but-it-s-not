@@ -1,5 +1,5 @@
 #include "linked.h"
-
+//
 void print_list(struct song_node *head){
     while(head){
         printf(" %s: %s |", head->artist, head->name);

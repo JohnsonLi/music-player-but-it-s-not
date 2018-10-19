@@ -1,5 +1,4 @@
 #include "music.h"
-#include "linked.c"
 
 struct song_node * library[27];
 
@@ -82,52 +81,34 @@ void remove_song(char *artist, char *name){
 }
 
 void shuffle(int number_songs){
+    
     int i;
-    int r;
+    printf("%d\n", rand()%27);
+    int r=-1;
     for(i = 0; i < number_songs; i++){
-        while(r){
+        while(r>=0 && library[r]){
             r=rand()%27;
         }
         print_node(random_element(library[r]));
-        r=0;
+        r=-1;
     }
 
 }
 
 int main(){
     srand(time(NULL));
-    /*
-    struct song_node *a = malloc(sizeof(struct song_node));
-    strcpy(a->artist, "haydn");
-    strcpy(a->name, "trumpet concerto");
-
-    struct song_node *aa = malloc(sizeof(struct song_node));
-    strcpy(aa->artist, "bydn");
-    strcpy(aa->name, "trumpet contorto");
-
-    struct song_node *b = malloc(sizeof(struct song_node));
-    strcpy(b->artist, "beethoven");
-    strcpy(b->name, "roomba sonata");
-
-    struct song_node *c = malloc(sizeof(struct song_node));
-    strcpy(c->artist, "yeethoven");
-    strcpy(c->name, "trumpet concerto");
-    */
-
-    // print_library();
 
     add_song("haydn","trumpet concerto");
     add_song("bydn","trumpet contorto");
     add_song("beethoven","roomba sonata");
     add_song("yeethoven","trumpet concerto");
-
     print_library();
 
     //print_node(search("yeethoven", "roomba sonata"));
-    remove_song("beethoven","roomba sonata");
+    //remove_song("beethoven","roomba sonata");
     print_library();
 
-    // print_letter('h');
+    shuffle(3);
     
 
 
