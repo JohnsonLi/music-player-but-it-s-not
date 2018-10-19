@@ -95,9 +95,12 @@ int main(){
     printf("====================================\n");
 
     struct song_node *library[27];
-
+    int i;
+    for(i; i<27;i++){
+    	library[i]=malloc(sizeof(struct song_node));
+    }
     printf("current library(empty):\n");
-    print_library(library);
+    //print_library(library);
 
     printf("TESTING ADD:\n");
     printf("adding [beethoven: moonlight sonata]\n");
@@ -155,7 +158,7 @@ int main(){
     print_library(library);
 
     printf("TESTING CLEARING:\n");
-    prtinf("clearing library...\n");
+    printf("clearing library...\n");
     free_library(library);
     printf("library now:\n");
     print_library(library);

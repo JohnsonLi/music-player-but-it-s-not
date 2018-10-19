@@ -28,7 +28,7 @@ void add_song(struct song_node * library[], char *artist, char *name){
         index = 26;
     }
     if(library[index]){
-        library[index] = insert_order(library[index], to_add->artist, to_add->name);
+        library[index] = insert_order(library[index], artist, name);
     } else {
         library[index] = to_add;
     }
